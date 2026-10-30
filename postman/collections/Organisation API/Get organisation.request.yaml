@@ -1,0 +1,14 @@
+$kind: http-request
+method: GET
+url: '{{base_url}}/organisation/:orgId'
+order: 1000
+pathVariables:
+  - key: orgId
+    value: '1'
+scripts:
+  - type: afterResponse
+    language: text/javascript
+    code: |-
+      pm.test("Status code is 200", function () {
+        pm.response.to.have.status(200);
+      });

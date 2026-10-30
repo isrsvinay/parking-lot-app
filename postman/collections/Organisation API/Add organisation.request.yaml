@@ -1,0 +1,22 @@
+$kind: http-request
+method: POST
+url: '{{base_url}}/organisation'
+order: 2000
+headers:
+  - key: Content-Type
+    value: application/json
+body:
+  type: json
+  content: |-
+    {
+      "organisationName": "Example Organisation",
+      "branch": "Main Branch",
+      "organisationId": 1
+    }
+scripts:
+  - type: afterResponse
+    language: text/javascript
+    code: |-
+      pm.test("Status code is successful", function () {
+        pm.expect(pm.response.code).to.be.oneOf([200, 201]);
+      });

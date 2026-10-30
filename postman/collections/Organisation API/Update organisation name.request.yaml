@@ -1,0 +1,14 @@
+$kind: http-request
+method: PATCH
+url: '{{base_url}}/organisation/orgId?orgName=Updated Organisation'
+order: 3000
+queryParams:
+  - key: orgName
+    value: Updated Organisation
+scripts:
+  - type: afterResponse
+    language: text/javascript
+    code: |-
+      pm.test("Status code is 200", function () {
+        pm.response.to.have.status(200);
+      });
